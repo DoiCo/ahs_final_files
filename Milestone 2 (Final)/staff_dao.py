@@ -5,7 +5,7 @@ class StaffDAO:
     """Data Access Object for staff table operations."""
     
     def __init__(self):
-        """Initialize database connection and enable foreign keys."""
+        """Initialise database connection and enable foreign keys."""
         self.db_path = 'ahs_database.db'
         self.connection = None
         

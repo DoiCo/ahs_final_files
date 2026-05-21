@@ -7,7 +7,7 @@ class GuestGUI:
     """GUI for managing guest records."""
     
     def __init__(self, root=None):
-        """Initialize the guest management window."""
+        """Initialise the guest management window."""
         # If root is provided (tk.Toplevel), use it. Otherwise create our own.
         if root is not None:
             self.root = root
@@ -32,22 +32,18 @@ class GuestGUI:
     
     def _build_ui(self):
         """Build the UI - separated from __init__ for cleanliness."""
-        # Create main frame
         self.main_frame = tk.Frame(self.root, bg="white")
         self.main_frame.pack(fill=tk.BOTH, expand=True)
         
-        # Title
         title = tk.Label(self.main_frame, text="Guest Management", font=("Helvetica", 18, "bold"), bg="white")
         title.pack(pady=10)
         
-        # Form frame
         form_frame = tk.Frame(self.main_frame, bg="white")
         form_frame.pack(fill=tk.BOTH, padx=10, pady=5)
         
         form_title = tk.Label(form_frame, text="Guest Profile Management", font=("Arial", 12, "bold"), bg="white")
         form_title.pack(anchor="w")
         
-        # Create form fields
         self.guest_id_var = tk.StringVar()
         self.first_name_var = tk.StringVar()
         self.last_name_var = tk.StringVar()
@@ -78,7 +74,6 @@ class GuestGUI:
                 entry.config(show="*")
             entry.pack(side=tk.LEFT, padx=5, fill=tk.X, expand=True)
         
-        # Listbox frame
         list_frame = tk.Frame(self.main_frame, bg="white")
         list_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=5)
         
@@ -93,13 +88,12 @@ class GuestGUI:
         self.guest_listbox.bind('<<ListboxSelect>>', self.on_guest_select)
         scrollbar.config(command=self.guest_listbox.yview)
         
-        # Button frame
         btn_frame = tk.Frame(self.main_frame, bg="white")
         btn_frame.pack(fill=tk.X, padx=10, pady=10)
         
-        tk.Button(btn_frame, text="Clear", command=self.clear_form, width=10).pack(side=tk.LEFT, padx=5)
-        tk.Button(btn_frame, text="Save", command=self.save, width=10).pack(side=tk.LEFT, padx=5)
-        tk.Button(btn_frame, text="Delete", command=self.delete, width=10).pack(side=tk.LEFT, padx=5)
+        ttk.Button(btn_frame, text="Clear", command=self.clear_form, width=10).pack(side=tk.LEFT, padx=5)
+        ttk.Button(btn_frame, text="Save", command=self.save, width=10).pack(side=tk.LEFT, padx=5)
+        ttk.Button(btn_frame, text="Delete", command=self.delete, width=10).pack(side=tk.LEFT, padx=5)
         
         self.load_guests()
 

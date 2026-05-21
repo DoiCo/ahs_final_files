@@ -5,7 +5,7 @@ class GuestDAO:
     """Data Access Object for guest table operations."""
     
     def __init__(self):
-        """Initialize database connection and enable foreign keys."""
+        """Initialise database connection and enable foreign keys."""
         self.db_path = 'ahs_database.db'
         self.connection = None
         
@@ -150,18 +150,7 @@ class GuestDAO:
                 cursor.close()
     
     def update(self, guest_id, data):
-        """
-        Update an existing guest record.
-        
-        Args:
-            guest_id (int): The ID of the guest to update
-            data (dict): Dictionary containing fields to update
-        
-        Returns:
-            dict: Status dictionary with keys:
-                - 'status': 'Success', 'Not Found', or 'Error'
-                - 'message': Description of operation result
-        """
+        """Update guest record with provided data."""
         cursor = None
         allowed_fields = {'FirstName', 'LastName', 'PhoneNumber', 'Email',
                          'CreditCardNum'}
@@ -206,7 +195,7 @@ class GuestDAO:
                 cursor.close()
     
     def delete(self, guest_id):
-        """Delete a guest record from the database."""
+        """Delete guest record by ID."""
         cursor = None
         
         try:

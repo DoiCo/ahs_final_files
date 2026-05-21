@@ -6,7 +6,7 @@ class MainGUI:
     """Main navigation window for the reservation system."""
     
     def __init__(self, root):
-        """Initialize the main menu window."""
+        """Initialise the main menu window."""
         self.root = root
         self.root.title("Antique Hotel and Spa - Reservation System")
         self.root.geometry("600x400")

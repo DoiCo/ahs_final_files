@@ -95,9 +95,10 @@ def create_database():
         raise
     
     finally:
-        # Ensure cursor and connection are properly closed
         if cursor:
             cursor.close()
+        if connection:
+            connection.close()
         if connection:
             connection.close()
 

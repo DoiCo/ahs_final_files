@@ -9,7 +9,7 @@ class ReservationGUI:
     """GUI for managing reservation records."""
     
     def __init__(self, root=None):
-        """Initialize the reservation management window."""
+        """Initialise the reservation management window."""
         # If root is provided (tk.Toplevel), use it. Otherwise create our own.
         if root is not None:
             self.root = root
@@ -42,23 +42,18 @@ class ReservationGUI:
     
     def _build_ui(self):
         """Build the UI - separated from __init__ for cleanliness."""
-        # Create main frame (uses pack for main containers)
         self.main_frame = tk.Frame(self.root, bg='#f4f5f7')
         self.main_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
         
-        # Create card container (inner frame)
         card_frame = tk.Frame(self.main_frame, bg='white', relief=tk.FLAT)
         card_frame.pack(fill=tk.BOTH, expand=True, padx=30, pady=30)
         
-        # Title
         title = ttk.Label(card_frame, text="Reservation Management", font=("Helvetica", 18, "bold"), background='white')
         title.pack(pady=10)
         
-        # Form frame
         form_frame = ttk.LabelFrame(card_frame, text="Process Room Reservation", padding=10)
         form_frame.pack(fill=tk.X, padx=0, pady=5)
         
-        # Create variables bound to root
         self.reservation_id_var = tk.StringVar(self.root)
         self.guest_id_var = tk.StringVar(self.root)
         self.staff_id_var = tk.StringVar(self.root)
@@ -69,7 +64,6 @@ class ReservationGUI:
         self.num_infants_var = tk.IntVar(self.root, value=0)
         self.promo_code_var = tk.StringVar(self.root)
         
-        # Create form fields using grid layout
         row = 0
         
         # Reservation ID
@@ -135,10 +129,8 @@ class ReservationGUI:
         ttk.Label(form_frame, text="Promo Code:").grid(row=row, column=0, sticky="e", padx=5, pady=5)
         ttk.Entry(form_frame, textvariable=self.promo_code_var, width=40).grid(row=row, column=1, sticky="ew", padx=5, pady=5)
         
-        # Configure grid column weights for form responsiveness
         form_frame.columnconfigure(1, weight=1)
         
-        # Listbox frame (uses pack for main containers)
         list_frame = ttk.LabelFrame(card_frame, text="Active Bookings", padding=10)
         list_frame.pack(fill=tk.BOTH, expand=True, padx=0, pady=5)
         
@@ -150,7 +142,6 @@ class ReservationGUI:
         self.reservation_listbox.bind('<<ListboxSelect>>', self.on_reservation_select)
         scrollbar.config(command=self.reservation_listbox.yview)
         
-        # Button frame (uses pack for main containers)
         btn_frame = ttk.Frame(card_frame)
         btn_frame.pack(fill=tk.X, padx=0, pady=10)
         

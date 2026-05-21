@@ -5,7 +5,7 @@ class ReservationDAO:
     """Data Access Object for reservation table operations."""
     
     def __init__(self):
-        """Initialize database connection and enable foreign keys."""
+        """Initialise database connection and enable foreign keys."""
         self.db_path = 'ahs_database.db'
         self.connection = None
         
@@ -181,18 +181,7 @@ class ReservationDAO:
                 cursor.close()
     
     def update(self, reservation_id, data):
-        """
-        Update an existing reservation record.
-        
-        Args:
-            reservation_id (int): The ID of the reservation to update
-            data (dict): Dictionary containing fields to update
-        
-        Returns:
-            dict: Status dictionary with keys:
-                - 'status': 'Success', 'Not Found', or 'Error'
-                - 'message': Description of operation result
-        """
+        """Update reservation record with provided data."""
         cursor = None
         allowed_fields = {'GuestID', 'StaffID', 'CheckInDate', 'CheckOutDate',
                          'NumAdults', 'NumChildren', 'NumInfants', 'PromoCode'}
@@ -244,7 +233,7 @@ class ReservationDAO:
                 cursor.close()
     
     def delete(self, reservation_id):
-        """Delete a reservation record from the database."""
+        """Delete reservation record by ID."""
         cursor = None
         
         try:
