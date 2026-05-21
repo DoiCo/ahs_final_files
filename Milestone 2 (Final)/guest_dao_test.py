@@ -69,6 +69,7 @@ def setup_test_database():
 
 def test_create():
     """Test create method - Insert new guest."""
+    setup_test_database()
     print("Testing create()...")
     
     guest_dao = GuestDAO()
@@ -92,6 +93,7 @@ def test_create():
 
 def test_find_by_id():
     """Test find_by_id method - Retrieve single guest."""
+    setup_test_database()
     print("Testing find_by_id()...")
     
     guest_dao = GuestDAO()
@@ -125,6 +127,7 @@ def test_find_by_id():
 
 def test_find_all():
     """Test find_all method - Retrieve all guests."""
+    setup_test_database()
     print("Testing find_all()...")
     
     guest_dao = GuestDAO()
@@ -162,6 +165,7 @@ def test_find_all():
 
 def test_find_ids():
     """Test find_ids method - Get IDs and names for dropdown."""
+    setup_test_database()
     print("Testing find_ids()...")
     
     guest_dao = GuestDAO()
@@ -180,6 +184,7 @@ def test_find_ids():
 
 def test_update():
     """Test update method - Modify existing guest."""
+    setup_test_database()
     print("Testing update()...")
     
     guest_dao = GuestDAO()
@@ -220,6 +225,7 @@ def test_update():
 
 def test_delete():
     """Test delete method - Remove guest."""
+    setup_test_database()
     print("Testing delete()...")
     
     guest_dao = GuestDAO()
@@ -263,8 +269,6 @@ def main():
     print("="*50 + "\n")
     
     try:
-        setup_test_database()
-        
         test_create()
         test_find_by_id()
         test_find_all()

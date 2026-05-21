@@ -29,8 +29,8 @@ class ReservationDAO:
             cursor.execute("""
                 INSERT INTO Reservation 
                 (GuestID, StaffID, CheckInDate, CheckOutDate, NumAdults, 
-                 NumChildren, NumInfants, PromoCode)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                 NumChildren, NumInfants, RoomTypeID, NumRooms, Status, PromoCode)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, (
                 data.get('GuestID'),
                 data.get('StaffID'),
@@ -39,6 +39,9 @@ class ReservationDAO:
                 data.get('NumAdults'),
                 data.get('NumChildren'),
                 data.get('NumInfants'),
+                data.get('RoomTypeID'),
+                data.get('NumRooms'),
+                data.get('Status'),
                 data.get('PromoCode')
             ))
             
@@ -82,6 +85,9 @@ class ReservationDAO:
                     r.NumAdults,
                     r.NumChildren,
                     r.NumInfants,
+                    r.RoomTypeID,
+                    r.NumRooms,
+                    r.Status,
                     r.PromoCode
                 FROM Reservation r
                 LEFT JOIN Guest g ON r.GuestID = g.GuestID
@@ -131,6 +137,9 @@ class ReservationDAO:
                     r.NumAdults,
                     r.NumChildren,
                     r.NumInfants,
+                    r.RoomTypeID,
+                    r.NumRooms,
+                    r.Status,
                     r.PromoCode
                 FROM Reservation r
                 LEFT JOIN Guest g ON r.GuestID = g.GuestID
@@ -184,9 +193,16 @@ class ReservationDAO:
         """Update reservation record with provided data."""
         cursor = None
         allowed_fields = {'GuestID', 'StaffID', 'CheckInDate', 'CheckOutDate',
-                         'NumAdults', 'NumChildren', 'NumInfants', 'PromoCode'}
+                         'NumAdults', 'NumChildren', 'NumInfants', 'RoomTypeID', 'NumRooms', 'Status', 'PromoCode'}
         
         try:
+            # Strict payload validation
+            if data.keys() - allowed_fields:
+                return {
+                    'status': 'Error',
+                    'message': 'Strict DAO Violation: Payload contains unpermitted fields.'
+                }
+            
             cursor = self.connection.cursor()
             
             cursor.execute(

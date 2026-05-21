@@ -63,6 +63,9 @@ def create_database():
                 NumAdults INTEGER NOT NULL,
                 NumChildren INTEGER NOT NULL,
                 NumInfants INTEGER NOT NULL,
+                RoomTypeID INTEGER NOT NULL,
+                NumRooms INTEGER NOT NULL,
+                Status TEXT NOT NULL,
                 PromoCode TEXT,
                 FOREIGN KEY (GuestID) REFERENCES Guest(GuestID),
                 FOREIGN KEY (StaffID) REFERENCES Staff(StaffID)

@@ -156,6 +156,13 @@ class GuestDAO:
                          'CreditCardNum'}
         
         try:
+            # Strict payload validation
+            if data.keys() - allowed_fields:
+                return {
+                    'status': 'Error',
+                    'message': 'Strict DAO Violation: Payload contains unpermitted fields.'
+                }
+            
             cursor = self.connection.cursor()
             
             cursor.execute("SELECT GuestID FROM Guest WHERE GuestID = ?",

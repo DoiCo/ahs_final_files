@@ -55,6 +55,9 @@ def setup_test_database():
             NumAdults INTEGER NOT NULL,
             NumChildren INTEGER NOT NULL,
             NumInfants INTEGER NOT NULL,
+            RoomTypeID INTEGER NOT NULL,
+            NumRooms INTEGER NOT NULL,
+            Status TEXT NOT NULL,
             PromoCode TEXT,
             FOREIGN KEY (GuestID) REFERENCES Guest(GuestID),
             FOREIGN KEY (StaffID) REFERENCES Staff(StaffID)
@@ -82,6 +85,7 @@ def setup_test_database():
 
 def test_create():
     """Test create method - Insert new reservation."""
+    setup_test_database()
     print("Testing create()...")
     
     reservation_dao = ReservationDAO()
@@ -94,6 +98,9 @@ def test_create():
         'NumAdults': 2,
         'NumChildren': 1,
         'NumInfants': 0,
+        'RoomTypeID': 1,
+        'NumRooms': 1,
+        'Status': 'Confirmed',
         'PromoCode': 'SUMMER20'
     }
     
@@ -108,6 +115,7 @@ def test_create():
 
 def test_create_invalid_foreign_key():
     """Test create method with invalid foreign key."""
+    setup_test_database()
     print("Testing create() with invalid foreign key...")
     
     reservation_dao = ReservationDAO()
@@ -120,6 +128,9 @@ def test_create_invalid_foreign_key():
         'NumAdults': 2,
         'NumChildren': 0,
         'NumInfants': 0,
+        'RoomTypeID': 1,
+        'NumRooms': 1,
+        'Status': 'Confirmed',
         'PromoCode': None
     }
     
@@ -132,6 +143,7 @@ def test_create_invalid_foreign_key():
 
 def test_find_by_id():
     """Test find_by_id method - Retrieve single reservation."""
+    setup_test_database()
     print("Testing find_by_id()...")
     
     reservation_dao = ReservationDAO()
@@ -145,6 +157,9 @@ def test_find_by_id():
         'NumAdults': 1,
         'NumChildren': 0,
         'NumInfants': 0,
+        'RoomTypeID': 1,
+        'NumRooms': 1,
+        'Status': 'Confirmed',
         'PromoCode': 'SUMMER25'
     }
     
@@ -168,6 +183,7 @@ def test_find_by_id():
 
 def test_find_all():
     """Test find_all method - Retrieve all reservations with JOINs."""
+    setup_test_database()
     print("Testing find_all()...")
     
     reservation_dao = ReservationDAO()
@@ -182,6 +198,9 @@ def test_find_all():
             'NumAdults': 2,
             'NumChildren': 0,
             'NumInfants': 0,
+            'RoomTypeID': 1,
+            'NumRooms': 1,
+            'Status': 'Confirmed',
             'PromoCode': None
         },
         {
@@ -192,6 +211,9 @@ def test_find_all():
             'NumAdults': 1,
             'NumChildren': 1,
             'NumInfants': 1,
+            'RoomTypeID': 1,
+            'NumRooms': 1,
+            'Status': 'Confirmed',
             'PromoCode': 'FAMILY10'
         }
     ]
@@ -217,6 +239,7 @@ def test_find_all():
 
 def test_find_ids():
     """Test find_ids method - Get reservation IDs."""
+    setup_test_database()
     print("Testing find_ids()...")
     
     reservation_dao = ReservationDAO()
@@ -231,6 +254,7 @@ def test_find_ids():
 
 def test_update():
     """Test update method - Modify existing reservation."""
+    setup_test_database()
     print("Testing update()...")
     
     reservation_dao = ReservationDAO()
@@ -244,6 +268,9 @@ def test_update():
         'NumAdults': 2,
         'NumChildren': 0,
         'NumInfants': 0,
+        'RoomTypeID': 1,
+        'NumRooms': 1,
+        'Status': 'Confirmed',
         'PromoCode': 'EARLY50'
     }
     
@@ -275,6 +302,7 @@ def test_update():
 
 def test_delete():
     """Test delete method - Remove reservation."""
+    setup_test_database()
     print("Testing delete()...")
     
     reservation_dao = ReservationDAO()
@@ -288,6 +316,9 @@ def test_delete():
         'NumAdults': 1,
         'NumChildren': 0,
         'NumInfants': 0,
+        'RoomTypeID': 1,
+        'NumRooms': 1,
+        'Status': 'Confirmed',
         'PromoCode': None
     }
     
@@ -321,8 +352,6 @@ def main():
     print("="*50 + "\n")
     
     try:
-        setup_test_database()
-        
         test_create()
         test_create_invalid_foreign_key()
         test_find_by_id()
